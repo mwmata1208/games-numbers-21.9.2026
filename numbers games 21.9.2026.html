@@ -39,13 +39,39 @@
         #startBtn:hover {
             background-color: #01579b;
         }
+
+        .gridPanel {
+            width: 220px;
+            position: fixed;
+            top: 150px;
+            right: 25px;
+            background-color: lightblue;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 20px;
+            text-align: right;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+
+        #gameDiv {
+            display: none;
+        }
     </style>
 </head>
 <body>
 
+<div class="gridPanel">
+    <div>זמן נוכחי: <span id="timeDisplay">0.0</span> שניות</div>
+</div>
+
 <div id="startDiv">
     <h1 class="greenText">שם המשחק: NUMBERS GAME!</h1>
     <button id="startBtn">התחל משחק (Start)</button>
+</div>
+
+<div id="gameDiv">
+    <h1 class="greenText">לחץ על המספרים מהקטן אל הגדול!</h1>
 </div>
 
 </body>
