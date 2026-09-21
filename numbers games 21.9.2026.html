@@ -73,7 +73,6 @@
 </div>
 
 <div id="gameDiv">
-    <h1 class="greenText">לחץ על המספרים מהקטן אל הגדול!</h1>
 </div>
 
 <script>
@@ -84,6 +83,15 @@
     const timeDisplay = document.getElementById("timeDisplay");
     const bestTimeDisplay = document.getElementById("bestTimeDisplay");
     const mistakeDisplay = document.getElementById("mistakeDisplay");
+
+    const startDiv = document.getElementById("startDiv");
+    const gameDiv = document.getElementById("gameDiv");
+    const startBtn = document.getElementById("startBtn");
+
+    startBtn.addEventListener("click", function() {
+        startDiv.style.display = "none";
+        gameDiv.style.display = "block";
+    });
 </script>
 
 </body>
