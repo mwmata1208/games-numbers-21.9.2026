@@ -139,14 +139,12 @@
             gameBoard.appendChild(numBox);
         }
 
-        // חלק 20: הפעלת שעון הזמן ועצירת אינטרוול קודם אם היה פעיל
         clearInterval(timerId);
         gameOver = false;
         startTime = Date.now();
         timerId = setInterval(updateTimer, 100);
     });
 
-    // חלק 20: פונקציה המחשבת את הזמן שעבר ומעדכנת את התצוגה על המסך
     function updateTimer() {
         if (gameOver) return;
         let elapsed = (Date.now() - startTime) / 1000;
