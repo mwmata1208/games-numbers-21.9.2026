@@ -120,7 +120,6 @@
         gameDiv.style.display = "block";
 
         document.querySelector("#gameDiv h1").innerHTML = "לחץ על המספרים מהקטן אל הגדול!";
-
         gameBoard.innerHTML = "";
         numbersArray = [];
 
@@ -137,10 +136,22 @@
             let numBox = document.createElement("div");
             numBox.classList.add("numberBox");
             numBox.innerHTML = numbersArray[i];
-
             gameBoard.appendChild(numBox);
         }
+
+        // חלק 20: הפעלת שעון הזמן ועצירת אינטרוול קודם אם היה פעיל
+        clearInterval(timerId);
+        gameOver = false;
+        startTime = Date.now();
+        timerId = setInterval(updateTimer, 100);
     });
+
+    // חלק 20: פונקציה המחשבת את הזמן שעבר ומעדכנת את התצוגה על המסך
+    function updateTimer() {
+        if (gameOver) return;
+        let elapsed = (Date.now() - startTime) / 1000;
+        timeDisplay.innerHTML = elapsed.toFixed(1);
+    }
 </script>
 
 </body>
