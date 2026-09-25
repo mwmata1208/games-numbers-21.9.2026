@@ -94,7 +94,6 @@
 
 <div id="gameDiv">
     <h1 class="greenText">לחץ על המספרים מהקטן אל הגדול!</h1>
-
     <div id="gameBoard" class="numbers_container"></div>
 </div>
 
@@ -103,14 +102,15 @@
     let bestTime = null;
     let mistakes = 0;
 
+    let numbersArray = [];
+    let sortedArray = [];
+
     const timeDisplay = document.getElementById("timeDisplay");
     const bestTimeDisplay = document.getElementById("bestTimeDisplay");
     const mistakeDisplay = document.getElementById("mistakeDisplay");
-
     const startDiv = document.getElementById("startDiv");
     const gameDiv = document.getElementById("gameDiv");
     const startBtn = document.getElementById("startBtn");
-
     const gameBoard = document.getElementById("gameBoard");
 
     startBtn.addEventListener("click", function() {
