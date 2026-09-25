@@ -101,9 +101,11 @@
     let startTime = 0;
     let bestTime = null;
     let mistakes = 0;
-
     let numbersArray = [];
     let sortedArray = [];
+
+    let currentTargetIndex = 0;
+    let gameOver = true;
 
     const timeDisplay = document.getElementById("timeDisplay");
     const bestTimeDisplay = document.getElementById("bestTimeDisplay");
