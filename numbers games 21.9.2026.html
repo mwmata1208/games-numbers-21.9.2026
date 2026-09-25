@@ -105,8 +105,6 @@
     let sortedArray = [];
     let currentTargetIndex = 0;
     let gameOver = true;
-
-    // חלק 16: הוספת משתנה מזהה שעון המשחק
     let timerId = null;
 
     const timeDisplay = document.getElementById("timeDisplay");
@@ -117,9 +115,21 @@
     const startBtn = document.getElementById("startBtn");
     const gameBoard = document.getElementById("gameBoard");
 
-    startBtn.addEventListener("click", function() {
+    בדיקת הגרלת 10 מספרים אקראיים בני ספרה אחת ללא כפילויות    startBtn.addEventListener("click", function() {
         startDiv.style.display = "none";
         gameDiv.style.display = "block";
+
+        numbersArray = [];
+
+        while (numbersArray.length < 10) {
+            let randNum = Math.floor(Math.random() * 10);
+
+            if (!numbersArray.includes(randNum)) {
+                numbersArray.push(randNum);
+            }
+        }
+
+        document.querySelector("#gameDiv h1").innerHTML = "המספרים שהוגרלו: " + numbersArray.join(", ");
     });
 </script>
 
