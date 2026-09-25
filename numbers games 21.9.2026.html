@@ -168,6 +168,7 @@
 
         clearInterval(timerId);
         gameOver = false;
+        currentTargetIndex = 0;
         startTime = Date.now();
         timerId = setInterval(updateTimer, 100);
     });
@@ -178,10 +179,22 @@
         timeDisplay.innerHTML = elapsed.toFixed(1);
     }
 
-    // חלק 22: עדכון הפונקציה לקבלת האלמנט וצביעתו בצהוב זמני לבדיקה
     function handleNumberClick(element, value) {
-        playNote(300, 500);
-        element.style.backgroundColor = "yellow";
+        if (gameOver) return;
+
+        if (value === sortedArray[currentTargetIndex]) {
+            element.style.backgroundColor = "green";
+            element.style.color = "white";
+            currentTargetIndex++;
+
+            if (currentTargetIndex === 10) {
+                gameOver = true;
+                clearInterval(timerId);
+                alert("כל הכבוד! סיימת את המיון בהצלחה!");
+            }
+        } else {
+            element.style.backgroundColor = "yellow";
+        }
     }
 </script>
 
