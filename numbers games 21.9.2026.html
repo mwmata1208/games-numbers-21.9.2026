@@ -83,8 +83,8 @@
 
 <div class="gridPanel">
     <div>זמן נוכחי: <span id="timeDisplay">0.0</span> שניות</div>
-    <div>שיא אישי: <span id="bestTimeDisplay">--</span> שניות</div>
-    <div>טעויות: <span id="mistakeDisplay">0</span> / 3</div>
+    <div>מצב משחק: <span id="bestTimeDisplay">כבוי</span></div>
+    <div>אינדקס מטרה: <span id="mistakeDisplay">0</span></div>
 </div>
 
 <div id="startDiv">
@@ -118,6 +118,11 @@
     startBtn.addEventListener("click", function() {
         startDiv.style.display = "none";
         gameDiv.style.display = "block";
+
+        gameOver = false;
+
+        bestTimeDisplay.innerHTML = "פעיל (false)";
+        mistakeDisplay.innerHTML = currentTargetIndex;
     });
 </script>
 
