@@ -145,7 +145,6 @@
         gameBoard.innerHTML = "";
         numbersArray = [];
 
-        // חלק 24: איפוס מונה הטעויות בכל תחילת משחק מחדש
         mistakes = 0;
         mistakeDisplay.innerHTML = mistakes;
 
@@ -197,13 +196,19 @@
                 alert("כל הכבוד! סיימת את המיון בהצלחה!");
             }
         } else {
-
             mistakes++;
             mistakeDisplay.innerHTML = mistakes;
 
             element.style.backgroundColor = "red";
             element.style.color = "white";
             playNote(150, 500);
+
+            if (mistakes === 3) {
+                gameOver = true;
+                clearInterval(timerId);
+                alert("הפסדת! ביצעת 3 טעויות.");
+                return;
+            }
 
             setTimeout(function() {
                 if (!gameOver) {
