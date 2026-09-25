@@ -115,7 +115,6 @@
     const startBtn = document.getElementById("startBtn");
     const gameBoard = document.getElementById("gameBoard");
 
-    // פונקציית השמעת צליל מבוססת במדויק על פונקציית playNote מסיימון המרצה
     function playNote(frequency = 440, duration = 1) {
         try {
             const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -161,7 +160,7 @@
             numBox.innerHTML = numbersArray[i];
 
             numBox.addEventListener("click", function() {
-                handleNumberClick(numbersArray[i]);
+                handleNumberClick(numBox, numbersArray[i]);
             });
 
             gameBoard.appendChild(numBox);
@@ -179,8 +178,10 @@
         timeDisplay.innerHTML = elapsed.toFixed(1);
     }
 
-    function handleNumberClick(value) {
+    // חלק 22: עדכון הפונקציה לקבלת האלמנט וצביעתו בצהוב זמני לבדיקה
+    function handleNumberClick(element, value) {
         playNote(300, 500);
+        element.style.backgroundColor = "yellow";
     }
 </script>
 
