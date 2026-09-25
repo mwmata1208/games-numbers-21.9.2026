@@ -57,6 +57,26 @@
         #gameDiv {
             display: none;
         }
+
+        .numbers_container {
+            margin: 40px auto;
+            width: 650px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            padding: 10px;
+        }
+
+        .numberBox {
+            background-color: white;
+            border: 2px solid black;
+            height: 40px;
+            font-size: 26px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            user-select: none;
+        }
     </style>
 </head>
 <body>
@@ -74,6 +94,14 @@
 
 <div id="gameDiv">
     <h1 class="greenText">לחץ על המספרים מהקטן אל הגדול!</h1>
+
+    <div id="gameBoard" class="numbers_container">
+        <div class="numberBox"></div>
+        <div class="numberBox"></div>
+        <div class="numberBox"></div>
+        <div class="numberBox"></div>
+        <div class="numberBox"></div>
+    </div>
 </div>
 
 <script>
