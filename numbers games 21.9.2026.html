@@ -115,6 +115,29 @@
     const startBtn = document.getElementById("startBtn");
     const gameBoard = document.getElementById("gameBoard");
 
+    // פונקציית השמעת צליל מבוססת במדויק על פונקציית playNote מסיימון המרצה
+    function playNote(frequency = 440, duration = 1) {
+        try {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            oscillator.type = 'sine';
+            oscillator.frequency.value = frequency;
+
+            gainNode.gain.setValueAtTime(1, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration/1000);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + (duration / 1000));
+        } catch(e) {
+            console.log("Audio contextual restrictions applied.");
+        }
+    }
+
     startBtn.addEventListener("click", function() {
         startDiv.style.display = "none";
         gameDiv.style.display = "block";
@@ -136,6 +159,11 @@
             let numBox = document.createElement("div");
             numBox.classList.add("numberBox");
             numBox.innerHTML = numbersArray[i];
+
+            numBox.addEventListener("click", function() {
+                handleNumberClick(numbersArray[i]);
+            });
+
             gameBoard.appendChild(numBox);
         }
 
@@ -149,6 +177,10 @@
         if (gameOver) return;
         let elapsed = (Date.now() - startTime) / 1000;
         timeDisplay.innerHTML = elapsed.toFixed(1);
+    }
+
+    function handleNumberClick(value) {
+        playNote(300, 500);
     }
 </script>
 
