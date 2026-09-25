@@ -119,6 +119,9 @@
         startDiv.style.display = "none";
         gameDiv.style.display = "block";
 
+        document.querySelector("#gameDiv h1").innerHTML = "לחץ על המספרים מהקטן אל הגדול!";
+
+        gameBoard.innerHTML = "";
         numbersArray = [];
 
         while (numbersArray.length < 10) {
@@ -130,7 +133,13 @@
 
         sortedArray = [...numbersArray].sort(function(a, b) { return a - b; });
 
-        document.querySelector("#gameDiv h1").innerHTML = "המספרים שהוגרלו (0-29): [" + numbersArray.join(", ") + "]";
+        for (let i = 0; i < numbersArray.length; i++) {
+            let numBox = document.createElement("div");
+            numBox.classList.add("numberBox");
+            numBox.innerHTML = numbersArray[i];
+
+            gameBoard.appendChild(numBox);
+        }
     });
 </script>
 
