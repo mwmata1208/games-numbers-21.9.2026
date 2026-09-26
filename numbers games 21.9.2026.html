@@ -25,7 +25,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        #startBtn {
+        #startBtn, #restartBtn {
             font-size: 22px;
             padding: 10px 20px;
             cursor: pointer;
@@ -36,8 +36,17 @@
             margin-top: 20px;
         }
 
-        #startBtn:hover {
+        #startBtn:hover, #restartBtn:hover {
             background-color: #01579b;
+        }
+
+        #restartBtn {
+            background-color: #2e7d32;
+            display: none;
+        }
+
+        #restartBtn:hover {
+            background-color: #1b5e20;
         }
 
         .gridPanel {
@@ -95,6 +104,7 @@
 <div id="gameDiv">
     <h1 class="greenText">לחץ על המספרים מהקטן אל הגדול!</h1>
     <div id="gameBoard" class="numbers_container"></div>
+    <button id="restartBtn">משחק חדש (Restart)</button>
 </div>
 
 <script>
@@ -114,6 +124,7 @@
     const gameDiv = document.getElementById("gameDiv");
     const startBtn = document.getElementById("startBtn");
     const gameBoard = document.getElementById("gameBoard");
+    const restartBtn = document.getElementById("restartBtn");
 
     function playNote(frequency = 440, duration = 1) {
         try {
@@ -137,9 +148,10 @@
         }
     }
 
-    startBtn.addEventListener("click", function() {
+    function initGame() {
         startDiv.style.display = "none";
         gameDiv.style.display = "block";
+        restartBtn.style.display = "none";
 
         document.querySelector("#gameDiv h1").innerHTML = "לחץ על המספרים מהקטן אל הגדול!";
         gameBoard.innerHTML = "";
@@ -174,7 +186,10 @@
         currentTargetIndex = 0;
         startTime = Date.now();
         timerId = setInterval(updateTimer, 100);
-    });
+    }
+
+    startBtn.addEventListener("click", initGame);
+    restartBtn.addEventListener("click", initGame);
 
     function updateTimer() {
         if (gameOver) return;
@@ -193,6 +208,7 @@
             if (currentTargetIndex === 10) {
                 gameOver = true;
                 clearInterval(timerId);
+                restartBtn.style.display = "inline-block";
                 alert("כל הכבוד! סיימת את המיון בהצלחה!");
             }
         } else {
@@ -206,6 +222,7 @@
             if (mistakes === 3) {
                 gameOver = true;
                 clearInterval(timerId);
+                restartBtn.style.display = "inline-block";
                 alert("הפסדת! ביצעת 3 טעויות.");
                 return;
             }
